@@ -1,4 +1,4 @@
-FROM php:7.3.6-fpm
+FROM php:7.3.7-fpm
 
 LABEL maintainer="Joan Piedra <joan@joanpiedra.com>"
 
