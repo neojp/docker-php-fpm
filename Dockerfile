@@ -1,4 +1,5 @@
-FROM php:7.3.8-fpm
+# extend from official php-fpm | tag: neojp/php-fpm:8.2.30-fpm
+FROM php:8.2.30-fpm
 
 LABEL maintainer="Joan Piedra <joan@joanpiedra.com>"
 
@@ -25,7 +26,7 @@ RUN docker-php-ext-install opcache
 
 # install PHP GD
 RUN apt-get install -y libwebp-dev libjpeg62-turbo-dev libpng-dev libxpm-dev libfreetype6-dev zlib1g-dev libzip-dev
-RUN docker-php-ext-configure gd --with-gd --with-webp-dir --with-jpeg-dir --with-png-dir --with-zlib-dir --with-xpm-dir --with-freetype-dir --enable-gd-native-ttf
+RUN docker-php-ext-configure gd --with-webp --with-jpeg --with-xpm --with-freetype
 RUN docker-php-ext-install gd
 
 # install graphicsmagick
@@ -36,7 +37,7 @@ RUN pecl install gmagick-beta && docker-php-ext-enable gmagick
 RUN docker-php-ext-install exif
 
 # install phpredis
-RUN pecl install redis-4.3.0 && docker-php-ext-enable redis
+RUN pecl install redis-6.3.0 && docker-php-ext-enable redis
 
 # install xdebug
 RUN pecl install xdebug && docker-php-ext-enable xdebug
